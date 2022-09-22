@@ -12,14 +12,14 @@ checkButton.addEventListener("click", changeOperation)
 function changeOperation()
     {
         hideMassage();
-        if(billAmount.value > 0)
+        if(Number(billAmount.value) > 0)
         {
-            var cash = cashGiven.value;
-            var bill = billAmount.value;
+            var cash = Number(cashGiven.value);
+            var bill = Number(billAmount.value);
 
             if(cash > bill)
                 {
-                    var amountToBeReturn = cashGiven.value - billAmount.value;
+                    var amountToBeReturn = Number(cashGiven.value) -Number(billAmount.value);
                     changeCalculator(amountToBeReturn);
                 }
             else if(cash === bill)
