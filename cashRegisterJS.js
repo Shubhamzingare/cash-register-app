@@ -9,42 +9,59 @@ var awailableNotes = [2000, 500, 100, 20, 10, 5, 1];
 
 checkButton.addEventListener("click", changeOperation)
 
-function changeOperation(){
-    hideMassage();
-    if(billAmount.value > 0){
-        var cash = cashGiven.value;
-        var bill = billAmount.value;
+function changeOperation()
+    {
+        hideMassage();
+        if(billAmount.value > 0)
+        {
+            var cash = cashGiven.value;
+            var bill = billAmount.value;
 
-        if(cash > bill){
-            var amountToBeReturn = cashGiven.value - billAmount.value;
-            changeCalculator(amountToBeReturn);
+            if(cash > bill)
+                {
+                    var amountToBeReturn = cashGiven.value - billAmount.value;
+                    changeCalculator(amountToBeReturn);
+                }
+            else if(cash === bill)
+            {
+                equalAmount("Bill has been paid. No need to return change!");
+            }        
         }
-        else{
-            invalidInput("Do you wanna wash plates?");
+        else
+        {
+            invalidInput("Please enter the amount greater than zero");
         }
     }
-    else{
-        invalidInput("Please enter the amount greater than zero");
+
+function hideMassage()
+    {
+        message.style.display = "none";
     }
-}
 
-function hideMassage(){
-    message.style.display = "none";
-}
-
-function showMassage(){
-    message.style.display = "block";
-}
-
-function invalidInput( msg ){
-    showMassage();
-    message.innerHTML = msg;
-}
-
-function changeCalculator(amountToBeReturn){
-    for(var i=0; i<awailableNotes.length; i++){
-        var numberOfNotes = Math.trunc(amountToBeReturn / awailableNotes[i]);
-        amountToBeReturn = amountToBeReturn % awailableNotes[i];
-        noOfNotes[i].innerHTML = numberOfNotes;
+function showMassage()
+    {
+        message.style.display = "block";
     }
-}
+
+function invalidInput( msg )
+    {
+        showMassage();
+        message.innerHTML = msg;
+    }
+
+function equalAmount( msg )
+    {
+        showMassage();
+        message.innerHTML = msg;
+        message.style.color = "#facc15";
+    }
+
+function changeCalculator(amountToBeReturn)
+    {
+        for(var i=0; i<awailableNotes.length; i++)
+            {
+                var numberOfNotes = Math.trunc(amountToBeReturn / awailableNotes[i]);
+                amountToBeReturn = amountToBeReturn % awailableNotes[i];
+                noOfNotes[i].innerHTML = numberOfNotes;
+            }
+    }
